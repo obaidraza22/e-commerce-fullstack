@@ -1,5 +1,4 @@
-import { Routes, Route } from "react-router";
-// import Homepage from "./pages/Homepage";
+import { Routes, Route, Navigate } from "react-router";
 import CreateProducts from "./pages/CreateProducts";
 import Orders from "./pages/Orders";
 import Login from "./pages/Login";
@@ -14,7 +13,7 @@ function App() {
       <Toaster position="top-center" reverseOrder={false} />
       <Routes>
         <Route element={<ProtectedRoute />}>
-          {/*<Route path="/" element={<Homepage />} />*/}
+          <Route path="/" element={<Navigate to="/products" replace />} />
           <Route
             path="/products/create-products"
             element={<CreateProducts />}
