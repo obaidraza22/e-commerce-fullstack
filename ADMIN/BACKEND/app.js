@@ -7,10 +7,9 @@ const app = express();
 
 app.use(
   cors({
-    origin: [
-      "https://store-hub-lemon.vercel.app",
-      "https://https://store-hub-admin.vercel.app/",
-    ],
+    origin: (origin, callback) => {
+      callback(null, true);
+    },
     credentials: true,
   }),
 );
@@ -30,37 +29,5 @@ app.use("/order", orderRoute);
 
 app.listen(process.env.PORT, () => {
   connectDb();
-  console.log("Server Running On Port 3000");
+  console.log("Server Running On Port: " + process.env.PORT);
 });
-
-// {
-//     "data": {
-//         "id": "1w1FVmg",
-//         "title": "img",
-//         "url_viewer": "https://ibb.co/1w1FVmg",
-//         "url": "https://i.ibb.co/b8TchK0/img.jpg",
-//         "display_url": "https://i.ibb.co/b8TchK0/img.jpg",
-//         "width": 236,
-//         "height": 498,
-//         "size": 23433,
-//         "time": 1771488225,
-//         "expiration": 600,
-//         "image": {
-//             "filename": "img.jpg",
-//             "name": "img",
-//             "mime": "image/jpeg",
-//             "extension": "jpg",
-//             "url": "https://i.ibb.co/b8TchK0/img.jpg"
-//         },
-//         "thumb": {
-//             "filename": "img.jpg",
-//             "name": "img",
-//             "mime": "image/jpeg",
-//             "extension": "jpg",
-//             "url": "https://i.ibb.co/1w1FVmg/img.jpg"
-//         },
-//         "delete_url": "https://ibb.co/1w1FVmg/400483372959eea91ab9446f5ca245ae"
-//     },
-//     "success": true,
-//     "status": 200
-// }
